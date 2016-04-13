@@ -34,8 +34,8 @@ export default mongoose.model('Test', test);
 module.exports = {
 	model: 'Test',
 	data: [
-    	{ name: 'js-example-entry-1' },
-        { name: 'js-example-entry-1' }
+		{ name: 'js-example-entry-1' },
+		{ name: 'js-example-entry-1' }
 	]
 };
 ```
@@ -45,8 +45,8 @@ module.exports = {
 {
 	"model": "Test",
 	"data": [
-    	{ "name": "json-example-entry-1" },
-        { "name": "json-example-entry-1" }
+		{ "name": "json-example-entry-1" },
+		{ "name": "json-example-entry-1" }
 	]
 }
 ```
