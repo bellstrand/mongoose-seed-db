@@ -17,27 +17,27 @@ class MongooseSeed {
 		});
 	}
 
-	loadModels(modelsPath) {
-		let files = read(modelsPath);
+	loadModels(path) {
+		let files = read(path);
 		this.models = []
 		files.forEach(file => {
 			if(~file.indexOf('.js')) {
-				let model = require(modelsPath + '/' + file);
+				let model = require(path + '/' + file);
 				this.models.push(model.default.modelName);
 			}
 		});
 		console.log('Loaded models:', this.models);
 	}
 
-	populate(seedPath) {
+	populate(path) {
 		return new Promise((resolve, reject) => {
-			let files = read(seedPath);
+			let files = read(path);
 			console.log('Loading data from: ', files);
 
 			this.data = [];
 			files.forEach(file => {
 				if(~file.indexOf('.js') || ~file.indexOf('.json')) {
-					this.data.push(require(seedPath + '/' + file));
+					this.data.push(require(path + '/' + file));
 				}
 			});
 
@@ -105,4 +105,4 @@ class MongooseSeed {
 	}
 }
 
-export default new MongooseSeed();
+module.exports = exports = new MongooseSeed();
