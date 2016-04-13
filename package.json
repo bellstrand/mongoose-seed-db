@@ -1,0 +1,34 @@
+{
+  "name": "mongoose-seed",
+  "version": "0.0.1",
+  "description": "Seed data population for Mongoose",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "test": "babel-node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bellstrand/mongoose-seed.git"
+  },
+  "keywords": [
+    "mongoose",
+    "seed",
+    "mongo",
+    "mongodb"
+  ],
+  "author": "Magnus Bellstrand",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bellstrand/mongoose-seed/issues"
+  },
+  "homepage": "https://github.com/bellstrand/mongoose-seed",
+  "dependencies": {
+    "fs-readdir-recursive": "^1.0.0",
+    "mongoose": "^4.4.12"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.7.5",
+    "babel-preset-es2015-node5": "^1.2.0"
+  }
+}
