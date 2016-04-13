@@ -1,1 +1,1 @@
-# comming soon
+# mongoose-seed-db
