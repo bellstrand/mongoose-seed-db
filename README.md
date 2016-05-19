@@ -1,5 +1,10 @@
 # mongoose-seed-db
+
+[![Build Status](https://travis-ci.org/bellstrand/mongoose-seed-db.svg?branch=master)](https://travis-ci.org/bellstrand/mongoose-seed-db)
+[![npm Version](https://img.shields.io/npm/v/mongoose-seed-db.svg)](https://www.npmjs.com/package/mongoose-seed-db)
+
 mongoose-seed-db lets you populate and clear MongoDB collections with all the benefits of Mongooses model validation
+
 
 ## Basic example
 ```javascript
