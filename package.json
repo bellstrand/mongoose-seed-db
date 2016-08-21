@@ -27,7 +27,7 @@
   "homepage": "https://github.com/bellstrand/mongoose-seed-db",
   "dependencies": {
     "fs-readdir-recursive": "^1.0.0",
-    "mongoose": "^4.5.8"
+    "mongoose": "^4.5.9"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
