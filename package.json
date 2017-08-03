@@ -1,6 +1,6 @@
 {
   "name": "mongoose-seed-db",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Seed data for Mongoose models",
   "main": "dist/index.js",
   "scripts": {
