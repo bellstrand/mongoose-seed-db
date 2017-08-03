@@ -6,9 +6,9 @@ class MongooseSeed {
 		mongoose.Promise = global.Promise;
 	}
 
-	connect(db) {
+	connect(db, options) {
 		return new Promise((resolve, reject) => {
-			mongoose.connect(db).then(() => {
+			mongoose.connect(db, Object.assign({ useMongoClient: true }, options)).then(() => {
 				console.log('Connected to: ' + db);
 				resolve();
 			}).catch(error => {
@@ -23,7 +23,7 @@ class MongooseSeed {
 		files.forEach(file => {
 			if(~file.indexOf('.js')) {
 				let model = require(path + '/' + file);
-				this.models.push(model.default.modelName);
+				this.models.push((model.default || model).modelName);
 			}
 		});
 		console.log('Loaded models:', this.models);
