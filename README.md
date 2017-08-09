@@ -70,9 +70,16 @@ Loads mongoose models from path, use: ```__dirname + '/path_to_models'```
 
 ---
 
-#### MongooseSeed.populate(path)
+#### MongooseSeed.populate(path, options)
 
 Populate MongoDB with data in js/json files from path, use: ```__dirname + '/path_to_data'```
+
+Options:
+```
+populateExisting: true/false
+	- defaults to true
+	- false = only populate models without existing documents
+```
 
 ---
 

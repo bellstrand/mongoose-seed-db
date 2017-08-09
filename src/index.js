@@ -29,8 +29,12 @@ class MongooseSeed {
 		console.log('Loaded models:', this.models);
 	}
 
-	populate(path) {
-		return new Promise((resolve, reject) => {
+	populate(path, options = {}) {
+		options = Object.assign({
+			populateExisting: true
+		}, options);
+
+		return new Promise(async resolve => {
 			let files = read(path);
 			console.log('Loading data from: ', files);
 
@@ -43,64 +47,37 @@ class MongooseSeed {
 
 			console.log('Populating collections: ', this.data.map(collection => collection.model));
 
-			let promisses = [];
-			this.data.forEach(collection => {
-				console.log('Populating ' + collection.model + ' with ' + collection.data.length + ' entries');
+			for(var collection of this.data) {
 				let Model = mongoose.model(collection.model);
-				collection.data.forEach(entry => {
-					promisses.push(this.create(Model, entry));
-				});
-			});
-			Promise.all(promisses).then(() => {
-				console.log('Population Done!')
-				resolve();
-			}).catch(error => {
-				reject(error);
-			});
-		});
-	}
 
-	create(Model, entry) {
-		return new Promise((resolve, reject) => {
-			Model.create(entry, error => {
-				if(!error) {
-					resolve();
+				const documents = await Model.count({});
+
+				if(options.populateExisting || (!options.populateExisting && !documents)) {
+					console.log('Populating ' + collection.model + ' with ' + collection.data.length + ' entries');
+					for(let entry of collection.data) {
+						await Model.create(entry);
+					};
 				} else {
-					reject();
+					console.log('Model ' + collection.model + ' has ' + documents + ' existing entries, not populating');
 				}
-			});
+			};
+			console.log('Population Done!')
+			resolve();
 		});
 	}
 
-	clearAll(models) {
+	clearAll() {
 		return this.clearModels(this.models);
 	}
 
 	clearModels(models) {
 		console.log('Clearing collections: ', models);
-		return new Promise((resolve, reject) => {
-			let promisses = [];
-			models.forEach(modelName => {
-				promisses.push(this.clearModel(modelName));
-			});
-			Promise.all(promisses).then(() => {
+		return new Promise(async resolve => {
+			for(let modelName of models) {
+				let Model = mongoose.model(modelName);
+				await Model.remove({});
 				resolve();
-			}).catch(error => {
-				reject(error);
-			});
-		});
-	}
-
-	clearModel(modelName) {
-		return new Promise((resolve, reject) => {
-			let Model = mongoose.model(modelName);
-			Model.remove({}, error => {
-				if(!error) {
-					resolve();
-				} else {
-					reject();
-				}
-			});
+			}
 		});
 	}
 }
