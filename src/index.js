@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import mongoose from 'mongoose';
 import read from 'fs-readdir-recursive';
 

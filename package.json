@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/bellstrand/mongoose-seed-db",
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "fs-readdir-recursive": "^1.0.0",
     "mongoose": "^4.11.5"
   },
